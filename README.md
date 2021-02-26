@@ -6,7 +6,7 @@ It's used like this:
 
 **Register a component**
 ```ts
-import { DarkModeToggle } from './darkModeToggle';
+import DarkModeToggle from './darkModeToggle';
 
 Alpine.component('darkModeToggle', DarkModeToggle);
 ```
@@ -68,7 +68,7 @@ In the context of plain objects, the wrapper function acts as a constructor that
 
 A component can be registered like this:
 ```ts
-import { ExampleComponent } from './ExampleComponent';
+import ExampleComponent from './ExampleComponent';
 import { component } from '@leanadmin/alpine-typescript';
 
 component('example', ExampleComponent);
@@ -270,7 +270,7 @@ export default class Search extends AlpineComponent {
         return this.$refs.results.children[index + 1] as HTMLElement;
     };
 
-    currentResult(): HTMLElement {
+    currentResult(): HTMLElement|null {
         if (! this.$refs.results.contains(document.activeElement)) {
             return null;
         }
