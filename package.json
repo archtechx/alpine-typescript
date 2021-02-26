@@ -1,0 +1,28 @@
+{
+    "name": "@leanadmin/alpine-typescript",
+    "version": "0.1.0",
+    "description": "TypeScript support for Alpine.js",
+    "main": "src/index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/LeanAdmin/alpine-typescript.git"
+    },
+    "files": [
+        "src/index.ts"
+    ],
+    "scripts": {
+        "build": "npx mix --production",
+        "prepublishOnly": "npm run-script build"
+    },
+    "keywords": [
+        "alpine",
+        "alpine.js",
+        "typescript"
+    ],
+    "author": "Samuel Štancl <samuel.stancl@gmail.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/LeanAdmin/alpine-typescript/issues"
+    },
+    "homepage": "https://github.com/LeanAdmin/alpine-typescript#readme"
+}
