@@ -4,10 +4,10 @@ type ComponentConstructor = (...args: any[]) => object;
 
 export class AlpineComponent {
     /** Retrieve the root component DOM node. */
-    $el?: Element;
+    $el?: HTMLElement;
 
     /** Retrieve DOM elements marked with x-ref inside the component. */
-    $refs?: { [name: string]: Element };
+    $refs?: { [name: string]: HTMLElement };
 
     /** Retrieve the native browser "Event" object within an event listener. */
     $event?: Event;
