@@ -6,14 +6,14 @@ It's used like this:
 
 **Register a component**
 ```ts
-import { DarkModeToggle }
+import { DarkModeToggle } from './darkModeToggle';
 
-Alpine.component('DarkModeToggle', DarkModeToggle);
+Alpine.component('darkModeToggle', DarkModeToggle);
 ```
 
 **Use it the template**
 ```html
-<div x-data="Alpine.component('DarkModeToggle')()" x-init="init()">
+<div x-data="Alpine.component('darkModeToggle')()" x-init="init()">
     <button type="button" @click="switchTheme()">Switch theme</button>
 </div>
 ```
@@ -21,11 +21,17 @@ Alpine.component('DarkModeToggle', DarkModeToggle);
 ## Installation
 
 ```
-npm install --save-dev github:leanadmin/alpine-typescript
+npm install --save-dev @leanadmin/alpine-typescript
 ```
 
+The package will automatically initialize itself when needed, i.e. when one of its components are used in the JS bundle on the currently visited page.
+
+If you'd like to initialize it manually, you can use:
+
 ```ts
-// todo
+import { bootstrap } from '@leanadmin/alpine-typescript';
+
+bootstrap();
 ```
 
 ## Usage
@@ -53,8 +59,8 @@ The `component()` call itself returns a function that creates an instance of the
 To create a component, you need to create the component object and register it using one of the provided helpers.
 
 Component objects can be:
-- functions returning plain objects
 - classes
+- functions returning plain objects
 
 In the context of plain objects, the wrapper function acts as a constructor that can pass initial data to the object.
 
