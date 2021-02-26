@@ -62,7 +62,7 @@ export function convertClassToAlpineConstructor(component: any): ComponentConstr
     }
 }
 
-export default () => {
+export function bootstrap(): void {
     window.AlpineComponents = {};
 
     const deferrer = window.deferLoadingAlpine || function (callback: CallableFunction) { callback() };
@@ -72,4 +72,8 @@ export default () => {
 
         deferrer(callback);
     }
+}
+
+if (window.AlpineComponents === undefined) {
+    bootstrap();
 }
