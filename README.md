@@ -169,7 +169,7 @@ export default (foo: string, bar: number) => {
 
 # Real-world example
 
-Here's a practical example that uses constructors, `init()`, refs, events, and includes dependencies in the right way.
+Here's a practical example that uses constructors, `init()`, refs, events, and includes dependencies the right way.
 
 This example uses the Alpine component that we use for search on the [Lean documentation site](https://lean-admin.dev).
 
