@@ -11,7 +11,7 @@ import DarkModeToggle from './darkModeToggle';
 Alpine.component('darkModeToggle', DarkModeToggle);
 ```
 
-**Use it a template**
+**Use it in a template**
 ```html
 <div x-data="Alpine.component('darkModeToggle')()" x-init="init()">
     <button type="button" @click="switchTheme()">Switch theme</button>
