@@ -13,7 +13,7 @@
         "dist/index.d.ts"
     ],
     "scripts": {
-        "prepublish": "node_modules/typescript/bin/tsc tsconfig.json"
+        "prepublish": "node_modules/typescript/bin/tsc"
     },
     "keywords": [
         "alpine",
