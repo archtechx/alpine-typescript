@@ -76,7 +76,7 @@ component('example', ExampleComponent);
 
 Which will make it accessible using `Alpine.component('example')('foo', 'bar)`.
 
-**Note: You may notice that `Alpine.component()` can also be used to register components. Hoewver, it's better to avoid using it.** The reason for this is that `window.Alpine` might not yet be accessible when you're registering components, and if it is, it's possible that it's already evaluated some of the `x-data` attributes. `component()` is guaranteed to work. And of course, you can alias the import if you wish to use a different name.
+**Note: You may notice that `Alpine.component()` can also be used to register components. However, it's better to avoid using it.** The reason for this is that `window.Alpine` might not yet be accessible when you're registering components, and if it is, it's possible that it's already evaluated some of the `x-data` attributes. `component()` is guaranteed to work. And of course, you can alias the import if you wish to use a different name.
 
 To register multiple components, you can use the `registerComponents()` helper.
 
