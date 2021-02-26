@@ -70,13 +70,15 @@ component('example', ExampleComponent);
 
 Which will make it accessible using `Alpine.component('example')('foo', 'bar)`.
 
-**Note: It's better to avoid using `Alpine.component('example', ExampleComponent)`** even if it might work in some cases. The reason for this is that `window.Alpine` might not yet be accessible when you're registering components, and if it is, it's possible that it's already evaluated some of the `x-data` attributes.
+**Note: It's better to avoid using `Alpine.component('example', ExampleComponent)`** even if it might work in some cases. The reason for this is that `window.Alpine` might not yet be accessible when you're registering components, and if it is, it's possible that it's already evaluated some of the `x-data` attributes. `component()` is guaranteed to work. And of course, you can alias the import if you wish to use a different name.
 
 To register multiple components, you can use the `registerComponents()` helper.
 
 This can pair well with scripts that crawl your e.g. `alpine/` directory to register all components using their file names.
 
 ```ts
+// alpine/index.js
+
 import { registerComponents } from '@leanadmin/alpine-typescript';
 
 const files = require.context('./', true, /.*.ts/)
