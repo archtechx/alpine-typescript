@@ -1,10 +1,4 @@
-declare global {
-    interface Window {
-        AlpineComponents: { [name: string]: ComponentConstructor };
-        Alpine: any;
-        deferLoadingAlpine: Function;
-    }
-}
+declare const window: any;
 
 type ComponentConstructor = (...args: any[]) => object;
 
