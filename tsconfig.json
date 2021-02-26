@@ -2,7 +2,9 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es6",
-    "lib": ["ES2017", "DOM"]
+    "lib": ["ES2017", "DOM"],
+    "declaration": true,
+    "outDir": "dist/"
   },
   "include": ["src/**/*"]
 }
