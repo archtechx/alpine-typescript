@@ -24,7 +24,7 @@ Alpine.component('darkModeToggle', DarkModeToggle);
 npm install --save-dev @leanadmin/alpine-typescript
 ```
 
-The package will automatically initialize itself when needed, i.e. when one of its components are used in the JS bundle on the currently visited page.
+The package will automatically initialize itself when needed, i.e. when one of its components is used in the currently executed JS bundle.
 
 If you'd like to initialize it manually, you can use:
 
@@ -36,7 +36,7 @@ bootstrap();
 
 ## Usage
 
-You can get a component by calling `Alpine.component('componentName')(arg1, arg2)`. If your component has no arguments, still append the `()` after the call.
+You can use a component by calling `Alpine.component('componentName')(arg1, arg2)`. If your component has no arguments, still append `()` at the end of the call.
 
 The `component()` call itself returns a function for creating instances of the component. Invoking the function ensures that the component has a unique instance each time.
 
