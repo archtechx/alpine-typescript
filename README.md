@@ -1,19 +1,19 @@
 # TypeScript support for Alpine.js
 
-This package comes with a light TypeScript layer which provides full support for class components in Alpine.js.
+This package provides full support for class components in Alpine.js using a thin TypeScript layer.
 
 It's used like this:
 
 **Register a component**
 ```ts
-import { DarkModeToggle }
+import { DarkModeToggle } from './darkModeToggle';
 
-Alpine.component('DarkModeToggle', DarkModeToggle);
+Alpine.component('darkModeToggle', DarkModeToggle);
 ```
 
-**Use it the template**
+**Use it a template**
 ```html
-<div x-data="Alpine.component('DarkModeToggle')()" x-init="init()">
+<div x-data="Alpine.component('darkModeToggle')()" x-init="init()">
     <button type="button" @click="switchTheme()">Switch theme</button>
 </div>
 ```
@@ -21,27 +21,33 @@ Alpine.component('DarkModeToggle', DarkModeToggle);
 ## Installation
 
 ```
-npm install --save-dev github:leanadmin/alpine-typescript
+npm install --save-dev @leanadmin/alpine-typescript
 ```
 
+The package will automatically initialize itself when needed, i.e. when one of its components is used in the currently executed JS bundle.
+
+If you'd like to initialize it manually, you can use:
+
 ```ts
-// todo
+import { bootstrap } from '@leanadmin/alpine-typescript';
+
+bootstrap();
 ```
 
 ## Usage
 
-You can get a component by calling `Alpine.component('component-name')(arg1, arg2)`. If your component has no arguments, still append the `()` after the call.
+You can use a component by calling `Alpine.component('componentName')(arg1, arg2)`. If your component has no arguments, still append `()` at the end of the call.
 
-The `component()` call itself returns a function that creates an instance of the component. Invoking the function ensures that the component has a unique instance each time.
+The `component()` call itself returns a function for creating instances of the component. Invoking the function ensures that the component has a unique instance each time.
 
 ```html
-<div x-data="Alpine.component('DarkModeToggle')()" x-init="init()">
+<div x-data="Alpine.component('darkModeToggle')()" x-init="init()">
     <button type="button" @click="switchTheme()">Switch theme</button>
 </div>
 ```
 
 ```html
-<div x-data="Alpine.component('SearchableSelect')({ options: ['Foo', 'Bar'] })" x-init="init()">
+<div x-data="Alpine.component('searchableSelect')({ options: ['Foo', 'Bar'] })" x-init="init()">
     <div x-spread="options">
         ...
     </div>
@@ -53,8 +59,8 @@ The `component()` call itself returns a function that creates an instance of the
 To create a component, you need to create the component object and register it using one of the provided helpers.
 
 Component objects can be:
-- functions returning plain objects
 - classes
+- functions returning plain objects
 
 In the context of plain objects, the wrapper function acts as a constructor that can pass initial data to the object.
 
@@ -98,7 +104,7 @@ registerComponents(files);
 
 You can create class components by extending `AlpineComponent` and exporting the class as `default`.
 
-The `AlpineComponent` provides IDE support for Alpine's magic properties. This means that you can use `this.$el`, `this.$nextTick(() => this.foo = this.bar)`, and more with full type support.
+`AlpineComponent` provides full IDE support for Alpine's magic properties. This means that you can use `this.$el`, `this.$nextTick(() => this.foo = this.bar)`, and more with perfect type enforcement.
 
 ```ts
 import { AlpineComponent } from '@leanadmin/alpine-typescript';
@@ -134,7 +140,7 @@ export default class DarkModeToggle extends AlpineComponent {
 
 ## Plain object components
 
-To register a plain object as an Alpine component, return a function that wraps the object like this:
+To register a plain object as an Alpine component, export a function that wraps the object like this:
 ```ts
 export default (foo: string, bar: number) => ({
     foo,
@@ -146,7 +152,7 @@ export default (foo: string, bar: number) => ({
 })
 ```
 
-The function will serve as a "constructor" for the object, setting default values and anything else you might need.
+The function will serve as a "constructor" for the object, setting default values and anything else that's needed.
 
 Note that the `=> ({` part is just syntactic sugar, you're free to use `return` if it's useful in your case:
 
