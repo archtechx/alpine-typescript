@@ -39,8 +39,9 @@ export function component(name: string, component: Function = null): ComponentCo
         component = convertClassToAlpineConstructor(component);
     }
 
-    // @ts-ignore
     window.AlpineComponents[name] = component;
+
+    return component as ComponentConstructor;
 }
 
 export function convertClassToAlpineConstructor(component: any): ComponentConstructor {
