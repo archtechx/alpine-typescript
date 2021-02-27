@@ -6,12 +6,12 @@ It's used like this:
 
 **Register a component**
 ```ts
-import { DarkModeToggle } from './darkModeToggle';
+import DarkModeToggle from './darkModeToggle';
 
 Alpine.component('darkModeToggle', DarkModeToggle);
 ```
 
-**Use it a template**
+**Use it in a template**
 ```html
 <div x-data="Alpine.component('darkModeToggle')()" x-init="init()">
     <button type="button" @click="switchTheme()">Switch theme</button>
@@ -68,7 +68,7 @@ In the context of plain objects, the wrapper function acts as a constructor that
 
 A component can be registered like this:
 ```ts
-import { ExampleComponent } from './ExampleComponent';
+import ExampleComponent from './ExampleComponent';
 import { component } from '@leanadmin/alpine-typescript';
 
 component('example', ExampleComponent);
@@ -76,7 +76,7 @@ component('example', ExampleComponent);
 
 Which will make it accessible using `Alpine.component('example')('foo', 'bar)`.
 
-**Note: It's better to avoid using `Alpine.component('example', ExampleComponent)`** even if it might work in some cases. The reason for this is that `window.Alpine` might not yet be accessible when you're registering components, and if it is, it's possible that it's already evaluated some of the `x-data` attributes. `component()` is guaranteed to work. And of course, you can alias the import if you wish to use a different name.
+**Note: You may notice that `Alpine.component()` can also be used to register components. However, it's better to avoid using it.** The reason for this is that `window.Alpine` might not yet be accessible when you're registering components, and if it is, it's possible that it's already evaluated some of the `x-data` attributes. `component()` is guaranteed to work. And of course, you can alias the import if you wish to use a different name.
 
 To register multiple components, you can use the `registerComponents()` helper.
 
@@ -169,7 +169,7 @@ export default (foo: string, bar: number) => {
 
 # Real-world example
 
-Here's a practical example that uses constructors, `init()`, refs, events, and includes dependencies in the right way.
+Here's a practical example that uses constructors, `init()`, refs, events, and includes dependencies the right way.
 
 This example uses the Alpine component that we use for search on the [Lean documentation site](https://lean-admin.dev).
 
@@ -199,7 +199,7 @@ import 'alpinejs';
 - We import Alpine *after* this package
 
 <details>
-<summary>resources/js/search.js</summary>
+<summary>resources/js/search.ts</summary>
 
 ```ts
 import { AlpineComponent } from '@leanadmin/alpine-typescript';
@@ -270,7 +270,7 @@ export default class Search extends AlpineComponent {
         return this.$refs.results.children[index + 1] as HTMLElement;
     };
 
-    currentResult(): HTMLElement {
+    currentResult(): HTMLElement|null {
         if (! this.$refs.results.contains(document.activeElement)) {
             return null;
         }
@@ -316,7 +316,7 @@ export default class Search extends AlpineComponent {
 
 </details>
 
-**`search.js` highlights:**
+**`search.ts` highlights:**
 - We `export default` the class
 - We have to call `super()` if we define a constructor
 - Sometimes, we have to use `as HTMLElement` because the DOM API can return `Element` which doesn't have methods like `focus()`
