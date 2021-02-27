@@ -199,7 +199,7 @@ import 'alpinejs';
 - We import Alpine *after* this package
 
 <details>
-<summary>resources/js/search.js</summary>
+<summary>resources/js/search.ts</summary>
 
 ```ts
 import { AlpineComponent } from '@leanadmin/alpine-typescript';
@@ -316,7 +316,7 @@ export default class Search extends AlpineComponent {
 
 </details>
 
-**`search.js` highlights:**
+**`search.ts` highlights:**
 - We `export default` the class
 - We have to call `super()` if we define a constructor
 - Sometimes, we have to use `as HTMLElement` because the DOM API can return `Element` which doesn't have methods like `focus()`
