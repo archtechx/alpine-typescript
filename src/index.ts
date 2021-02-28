@@ -2,7 +2,7 @@ declare const window: any;
 
 type ComponentConstructor = (...args: any[]) => object;
 
-export class AlpineComponent {
+export abstract class AlpineComponent {
     /** Retrieve the root component DOM node. */
     $el?: HTMLElement;
 
