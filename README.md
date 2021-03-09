@@ -34,6 +34,14 @@ import { bootstrap } from '@leanadmin/alpine-typescript';
 bootstrap();
 ```
 
+Additionally, you can use the `addTitles()` function to add `x-title` attributes to all components. The class name of each component will be used as its title. This is useful if you're using tools like the [Alpine.js devtools](https://github.com/alpine-collective/alpinejs-devtools).
+
+```ts
+import { addTitles } from '@leanadmin/alpine-typescript';
+
+addTitles();
+```
+
 ## Usage
 
 You can use a component by calling `Alpine.component('componentName')(arg1, arg2)`. If your component has no arguments, still append `()` at the end of the call.

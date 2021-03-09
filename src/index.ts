@@ -16,10 +16,12 @@ export abstract class AlpineComponent {
     $dispatch?: (event: string, data: object) => void;
 
     /** Execute a given expression AFTER Alpine has made its reactive DOM updates. */
-    $nextTick?: (callback: () => void) => void;
+    $nextTick?: (callback: (_: any) => void) => void;
 
     /** Will fire a provided callback when a component property you "watched" gets changed. */
     $watch?: (property: string, callback: (value: any) => void) => void;
+
+    [key: string]: any;
 }
 
 export function registerComponents(components: { [name: string]: Function }): { [name: string]: ComponentConstructor } {
@@ -61,6 +63,16 @@ export function convertClassToAlpineConstructor(component: any): ComponentConstr
         // Copy properties
         return Object.assign(methods, instance);
     }
+}
+
+export function addTitles(): void {
+    window.Alpine.onBeforeComponentInitialized((component: AlpineComponent) => {
+        if (! component.$el.hasAttribute('x-title')) {
+            if (component.$data.constructor.prototype instanceof AlpineComponent) {
+                component.$el.setAttribute('x-title', component.$data.constructor.name);
+            }
+        }
+    });
 }
 
 export function bootstrap(): void {
