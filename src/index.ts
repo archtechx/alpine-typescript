@@ -24,7 +24,7 @@ export abstract class AlpineComponent {
     [key: string]: any;
 }
 
-declare type Alpine = {
+export declare type Alpine = {
 	version: string;
 	pauseMutationObserver: boolean;
 	magicProperties: { [name: string]: CallableFunction };
