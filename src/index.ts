@@ -45,7 +45,6 @@ export declare type Alpine = {
 	clone: (component: any, newEl: HTMLElement) => void;
 };
 
-
 export function registerComponents(components: { [name: string]: Function }): { [name: string]: ComponentConstructor } {
     Object.entries(components).forEach(([name, file]) => {
         component(name, file);
