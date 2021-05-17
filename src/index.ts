@@ -29,19 +29,18 @@ declare type Alpine = {
 	pauseMutationObserver: boolean;
 	magicProperties: { [name: string]: CallableFunction };
 	ignoreFocusedForValueBinding: boolean;
-	pauseMutationObserver: boolean;
-	onComponentInitializeds: Array<any>;
-	onBeforeComponentInitializeds: Array<any>;
-	onComponentInitializeds: (callback: CallableFunction) => void;
-	onBeforeComponentInitializeds: (callback: CallableFunction) => void;
+	onComponentInitializeds: Array<CallableFunction>;
+	onBeforeComponentInitializeds: Array<CallableFunction>;
+	onComponentInitialized: (callback: CallableFunction) => void;
+	onBeforeComponentInitialized: (callback: CallableFunction) => void;
 	listenForNewUninitializedComponentsAtRunTime: () => undefined;
 	discoverUninitializedComponents: (
 		callback: (rootEl: HTMLElement) => void,
-		el?: HTMLElement = null
+		el?: HTMLElement,
 	) => void;
 	discoverComponents: (callback: (rootEl: HTMLElement) => void) => void;
 	start: () => void;
-	addMagicProperty(name: string, callback: ($el: HTMLElement) => void);
+	addMagicProperty: (name: string, callback: ($el: HTMLElement) => void) => void;
 	clone: (component: AlpineComponent, newEl: HTMLElement) => void;
 };
 
