@@ -24,16 +24,16 @@ export abstract class AlpineComponent {
     [key: string]: any;
 }
 
-export declare type Alpine = {
+declare type Alpine = {
 	version: string;
 	pauseMutationObserver: boolean;
-	magicProperties: { [name: string]: function };
+	magicProperties: { [name: string]: CallableFunction };
 	ignoreFocusedForValueBinding: boolean;
 	pauseMutationObserver: boolean;
 	onComponentInitializeds: Array<any>;
 	onBeforeComponentInitializeds: Array<any>;
-	onComponentInitializeds: (callback: function) => void;
-	onBeforeComponentInitializeds: (callback: function) => void;
+	onComponentInitializeds: (callback: CallableFunction) => void;
+	onBeforeComponentInitializeds: (callback: CallableFunction) => void;
 	listenForNewUninitializedComponentsAtRunTime: () => undefined;
 	discoverUninitializedComponents: (
 		callback: (rootEl: HTMLElement) => void,
@@ -42,9 +42,7 @@ export declare type Alpine = {
 	discoverComponents: (callback: (rootEl: HTMLElement) => void) => void;
 	start: () => void;
 	addMagicProperty(name: string, callback: ($el: HTMLElement) => void);
-	clone: (component: any, newEl: HTMLElement) => void;
-
-	[key: string]: any;
+	clone: (component: AlpineComponent, newEl: HTMLElement) => void;
 };
 
 export function registerComponents(components: { [name: string]: Function }): { [name: string]: ComponentConstructor } {
