@@ -24,6 +24,34 @@ export abstract class AlpineComponent {
     [key: string]: any;
 }
 
+export interface Alpine {
+	version: string;
+	pauseMutationObserver: boolean;
+	magicProperties: { [name: string]: (el: HTMLElement) => void };
+	ignoreFocusedForValueBinding: boolean;
+	onComponentInitializeds: Array<(component: AlpineComponent) => void>;
+	onBeforeComponentInitializeds: Array<(component: AlpineComponent) => void>;
+	onComponentInitialized: (
+		callback: (component: AlpineComponent) => void,
+	) => void;
+	onBeforeComponentInitialized: (
+		callback: (component: AlpineComponent) => void,
+	) => void;
+	listenForNewUninitializedComponentsAtRunTime: () => undefined;
+	discoverUninitializedComponents: (
+		callback: (rootEl: HTMLElement) => void,
+		el?: HTMLElement,
+	) => void;
+	discoverComponents: (callback: (rootEl: HTMLElement) => void) => void;
+	start: () => void;
+	addMagicProperty: (
+		name: string,
+		callback: ($el: HTMLElement) => void,
+	) => void;
+	clone: (component: AlpineComponent, newEl: HTMLElement) => void;
+
+	[key: string]: any;
+}
 export function registerComponents(components: { [name: string]: Function }): { [name: string]: ComponentConstructor } {
     Object.entries(components).forEach(([name, file]) => {
         component(name, file);
