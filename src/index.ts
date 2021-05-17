@@ -43,6 +43,8 @@ export declare type Alpine = {
 	start: () => void;
 	addMagicProperty(name: string, callback: ($el: HTMLElement) => void);
 	clone: (component: any, newEl: HTMLElement) => void;
+
+	[key: string]: any;
 };
 
 export function registerComponents(components: { [name: string]: Function }): { [name: string]: ComponentConstructor } {
