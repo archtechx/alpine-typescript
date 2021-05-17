@@ -185,13 +185,14 @@ This example uses the Alpine component that we use for search on the [Lean docum
 <summary>resources/js/app.ts</summary>
 
 ```ts
+import { Alpine, component } from '@leanadmin/alpine-typescript';
+
 declare global {
     interface Window {
-        Alpine: any;
+        Alpine: Alpine;
     }
 }
 
-import { component } from '@leanadmin/alpine-typescript';
 import Search from './search';
 
 component('search', Search);
@@ -202,7 +203,7 @@ import 'alpinejs';
 </details>
 
 **`app.ts` highlights:**
-- It's a good idea to declare the `Alpine` property on `Window` in case you need to use `window.Alpine`
+- It's a good idea to declare the `Alpine` property on `Window` in case you need to use `window.Alpine`. The library provides an interface for this.
 - We initialize each component by calling `component()`
 - We import Alpine *after* this package
 
