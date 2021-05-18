@@ -48,7 +48,7 @@ export interface Alpine {
 		name: string,
 		callback: ($el: HTMLElement) => void,
 	) => void;
-	clone: (component: ComponentCComponentControllerontroller, newEl: HTMLElement) => void;
+	clone: (component: ComponentController, newEl: HTMLElement) => void;
 
 	[key: string]: any;
 }
