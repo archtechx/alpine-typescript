@@ -59,4 +59,11 @@ export declare function component(name: string, component?: Function): Component
 export declare function convertClassToAlpineConstructor(component: any): ComponentConstructor;
 export declare function addTitles(): void;
 export declare function bootstrap(): void;
+declare global {
+    interface Window {
+        Alpine: Alpine;
+        deferLoadingAlpine: any;
+        AlpineComponents: any;
+    }
+}
 export {};

@@ -1,5 +1,3 @@
-declare const window: any;
-
 type ComponentConstructor = (...args: any[]) => object;
 
 export abstract class AlpineComponent {
@@ -113,7 +111,7 @@ export function convertClassToAlpineConstructor(component: any): ComponentConstr
 }
 
 export function addTitles(): void {
-    window.Alpine.onBeforeComponentInitialized((component: AlpineComponent) => {
+    window.Alpine.onBeforeComponentInitialized((component: ComponentController) => {
         if (! component.$el.hasAttribute('x-title')) {
             if (component.$data.constructor.prototype instanceof AlpineComponent) {
                 component.$el.setAttribute('x-title', component.$data.constructor.name);
@@ -136,4 +134,12 @@ export function bootstrap(): void {
 
 if (window.AlpineComponents === undefined) {
     bootstrap();
+}
+
+declare global {
+    interface Window {
+        Alpine: Alpine;
+        deferLoadingAlpine: any;
+        AlpineComponents: any;
+    }
 }
