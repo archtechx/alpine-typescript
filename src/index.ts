@@ -143,7 +143,7 @@ declare global {
         AlpineComponents: any;
     }
 
-    interface AlpineElement extends HTMLElement {
+    export interface AlpineElement extends HTMLElement {
         __x: ComponentController;
     }
 }
