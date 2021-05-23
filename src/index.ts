@@ -136,14 +136,14 @@ if (window.AlpineComponents === undefined) {
     bootstrap();
 }
 
-export interface AlpineElement extends HTMLElement {
-    __x: ComponentController;
-}
-
 declare global {
     interface Window {
         Alpine: Alpine;
         deferLoadingAlpine: any;
         AlpineComponents: any;
+    }
+
+    interface AlpineElement extends HTMLElement {
+        __x: ComponentController;
     }
 }
