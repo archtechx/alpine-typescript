@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.convertClassToAlpineConstructor = exports.component = exports.registerComponents = exports.AlpineComponent = void 0;
+exports.bootstrap = exports.addTitles = exports.convertClassToAlpineConstructor = exports.component = exports.registerComponents = exports.AlpineComponent = void 0;
 class AlpineComponent {
 }
 exports.AlpineComponent = AlpineComponent;
@@ -18,8 +18,8 @@ function component(name, component = null) {
     if (component['prototype'] instanceof AlpineComponent) {
         component = convertClassToAlpineConstructor(component);
     }
-    // @ts-ignore
     window.AlpineComponents[name] = component;
+    return component;
 }
 exports.component = component;
 function convertClassToAlpineConstructor(component) {
@@ -36,11 +36,25 @@ function convertClassToAlpineConstructor(component) {
     };
 }
 exports.convertClassToAlpineConstructor = convertClassToAlpineConstructor;
-exports.default = () => {
+function addTitles() {
+    window.Alpine.onBeforeComponentInitialized((component) => {
+        if (!component.$el.hasAttribute('x-title')) {
+            if (component.$data.constructor.prototype instanceof AlpineComponent) {
+                component.$el.setAttribute('x-title', component.$data.constructor.name);
+            }
+        }
+    });
+}
+exports.addTitles = addTitles;
+function bootstrap() {
     window.AlpineComponents = {};
     const deferrer = window.deferLoadingAlpine || function (callback) { callback(); };
     window.deferLoadingAlpine = function (callback) {
         window.Alpine.component = component;
         deferrer(callback);
     };
-};
+}
+exports.bootstrap = bootstrap;
+if (window.AlpineComponents === undefined) {
+    bootstrap();
+}
