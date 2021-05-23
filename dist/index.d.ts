@@ -1,10 +1,10 @@
 declare type ComponentConstructor = (...args: any[]) => object;
 export declare abstract class AlpineComponent {
     /** Retrieve the root component DOM node. */
-    $el: HTMLElement;
+    $el: AlpineElement;
     /** Retrieve DOM elements marked with x-ref inside the component. */
     $refs: {
-        [name: string]: HTMLElement;
+        [name: string]: AlpineElement;
     };
     /** Retrieve the native browser "Event" object within an event listener. */
     $event: Event;
@@ -20,7 +20,7 @@ export interface Alpine {
     version: string;
     pauseMutationObserver: boolean;
     magicProperties: {
-        [name: string]: (el: HTMLElement) => void;
+        [name: string]: (el: AlpineElement) => void;
     };
     ignoreFocusedForValueBinding: boolean;
     onComponentInitializeds: Array<(component: ComponentController) => void>;
@@ -28,15 +28,15 @@ export interface Alpine {
     onComponentInitialized: (callback: (component: ComponentController) => void) => void;
     onBeforeComponentInitialized: (callback: (component: ComponentController) => void) => void;
     listenForNewUninitializedComponentsAtRunTime: () => undefined;
-    discoverUninitializedComponents: (callback: (rootEl: HTMLElement) => void, el?: HTMLElement) => void;
-    discoverComponents: (callback: (rootEl: HTMLElement) => void) => void;
+    discoverUninitializedComponents: (callback: (rootEl: AlpineElement) => void, el?: AlpineElement) => void;
+    discoverComponents: (callback: (rootEl: AlpineElement) => void) => void;
     start: () => void;
-    addMagicProperty: (name: string, callback: ($el: HTMLElement) => void) => void;
-    clone: (component: ComponentController, newEl: HTMLElement) => void;
+    addMagicProperty: (name: string, callback: ($el: AlpineElement) => void) => void;
+    clone: (component: ComponentController, newEl: AlpineElement) => void;
     [key: string]: any;
 }
 export declare interface ComponentController {
-    $el: HTMLElement;
+    $el: AlpineElement;
     $data: ProxyConstructor;
     $nextTickStack: CallableFunction[];
     $showDirectiveStack: any[];
@@ -45,9 +45,9 @@ export declare interface ComponentController {
     };
     unobservedData: AlpineComponent;
     getUnobservedData: () => AlpineComponent;
-    updateElements: (rootEl: HTMLElement, extraVars?: () => {}) => void;
-    updateElement: (el: HTMLElement, extraVars?: () => {}) => void;
-    evaluateReturnExpression: (el: HTMLElement, expression: string, extraVars?: () => {}) => void;
+    updateElements: (rootEl: AlpineElement, extraVars?: () => {}) => void;
+    updateElement: (el: AlpineElement, extraVars?: () => {}) => void;
+    evaluateReturnExpression: (el: AlpineElement, expression: string, extraVars?: () => {}) => void;
     [key: string]: any;
 }
 export declare function registerComponents(components: {
@@ -59,6 +59,9 @@ export declare function component(name: string, component?: Function): Component
 export declare function convertClassToAlpineConstructor(component: any): ComponentConstructor;
 export declare function addTitles(): void;
 export declare function bootstrap(): void;
+export interface AlpineElement extends HTMLElement {
+    __x: ComponentController;
+}
 declare global {
     interface Window {
         Alpine: Alpine;

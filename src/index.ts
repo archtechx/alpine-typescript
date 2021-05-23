@@ -2,10 +2,10 @@ type ComponentConstructor = (...args: any[]) => object;
 
 export abstract class AlpineComponent {
     /** Retrieve the root component DOM node. */
-    $el!: HTMLElement;
+    $el!: AlpineElement;
 
     /** Retrieve DOM elements marked with x-ref inside the component. */
-    $refs!: { [name: string]: HTMLElement };
+    $refs!: { [name: string]: AlpineElement };
 
     /** Retrieve the native browser "Event" object within an event listener. */
     $event!: Event;
@@ -25,7 +25,7 @@ export abstract class AlpineComponent {
 export interface Alpine {
     version: string;
     pauseMutationObserver: boolean;
-    magicProperties: { [name: string]: (el: HTMLElement) => void };
+    magicProperties: { [name: string]: (el: AlpineElement) => void };
     ignoreFocusedForValueBinding: boolean;
     onComponentInitializeds: Array<(component: ComponentController) => void>;
     onBeforeComponentInitializeds: Array<(component: ComponentController) => void>;
@@ -37,32 +37,32 @@ export interface Alpine {
     ) => void;
     listenForNewUninitializedComponentsAtRunTime: () => undefined;
     discoverUninitializedComponents: (
-        callback: (rootEl: HTMLElement) => void,
-        el?: HTMLElement,
+        callback: (rootEl: AlpineElement) => void,
+        el?: AlpineElement,
     ) => void;
-    discoverComponents: (callback: (rootEl: HTMLElement) => void) => void;
+    discoverComponents: (callback: (rootEl: AlpineElement) => void) => void;
     start: () => void;
     addMagicProperty: (
         name: string,
-        callback: ($el: HTMLElement) => void,
+        callback: ($el: AlpineElement) => void,
     ) => void;
-    clone: (component: ComponentController, newEl: HTMLElement) => void;
+    clone: (component: ComponentController, newEl: AlpineElement) => void;
 
     [key: string]: any;
 }
 
 export declare interface ComponentController {
-    $el: HTMLElement;
+    $el: AlpineElement;
     $data: ProxyConstructor;
     $nextTickStack: CallableFunction[];
     $showDirectiveStack: any[];
     $watchers: { [name: string]: CallableFunction };
     unobservedData: AlpineComponent;
     getUnobservedData: () => AlpineComponent;
-    updateElements: (rootEl: HTMLElement, extraVars?: () => {}) => void;
-    updateElement: (el: HTMLElement, extraVars?: () => {}) => void;
+    updateElements: (rootEl: AlpineElement, extraVars?: () => {}) => void;
+    updateElement: (el: AlpineElement, extraVars?: () => {}) => void;
     evaluateReturnExpression: (
-        el: HTMLElement,
+        el: AlpineElement,
         expression: string,
         extraVars?: () => {}
     ) => void;
@@ -134,6 +134,10 @@ export function bootstrap(): void {
 
 if (window.AlpineComponents === undefined) {
     bootstrap();
+}
+
+export interface AlpineElement extends HTMLElement {
+    __x: ComponentController;
 }
 
 declare global {

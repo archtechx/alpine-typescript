@@ -1,6 +1,6 @@
 {
     "name": "@leanadmin/alpine-typescript",
-    "version": "0.1.16",
+    "version": "0.1.17",
     "description": "TypeScript support for Alpine.js",
     "main": "dist/index.js",
     "repository": {
