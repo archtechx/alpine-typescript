@@ -37,7 +37,7 @@ export interface Alpine {
 }
 export declare interface ComponentController {
     $el: AlpineElement;
-    $data: ProxyConstructor;
+    $data: any;
     $nextTickStack: CallableFunction[];
     $showDirectiveStack: any[];
     $watchers: {
