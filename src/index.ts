@@ -138,6 +138,7 @@ if (window.AlpineComponents === undefined) {
 
 export interface AlpineElement extends HTMLElement {
     __x: ComponentController;
+    [key: string]: any;
 }
 
 declare global {
