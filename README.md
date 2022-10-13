@@ -1,4 +1,4 @@
-# TypeScript support for Alpine.js
+# TypeScript support for Alpine.js v2
 
 This package provides full support for class components in Alpine.js using a thin TypeScript layer.
 
