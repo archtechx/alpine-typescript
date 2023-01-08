@@ -199,7 +199,11 @@ component('search', Search);
 
 import 'alpinejs';
 ```
-
+**For alpine3 use:**
+```ts
+import Alpine from 'alpinejs';
+Alpine.start()
+```
 </details>
 
 **`app.ts` highlights:**
@@ -376,3 +380,5 @@ export default class Search extends AlpineComponent {
 - We call the component in `x-data`
 - We use both the constructor and `init`. The constructor cannot access magic properties, `init` can.
 - We can still use Alpine syntax in the template with no issues
+
+
